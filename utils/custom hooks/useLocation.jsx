@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { LOCATION_URL } from "../constants";
 
 const key = import.meta.env.VITE_API_KEY;
 
 const useLocation = () => {
-    const [location, setLocation] = useState("delhi");
+    const [options, setOptions] = useState([]);
 
-    const fetchData = async () => {
+    const fetchLocation = async (location) => {
+        if (!location) return;
+
         try {
-            const resource = LOCATION_URL + location + "&limit=3&appid=" + key;
+            const resource = `${LOCATION_URL}${location}&limit=3&appid=${key}`;
             const data = await fetch(resource);
             const json = await data.json();
+            setOptions(json);
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     };
 
-    useEffect(() => {
-        fetchData(); 
-    }, [location]);
-
-    return { location };
+    return { options, fetchLocation };
 };
 
 export default useLocation;
