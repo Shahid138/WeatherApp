@@ -35,7 +35,7 @@ const Search = () => {
   }, [submit]);
 
   return (
-    <>
+    <div className="">
       <form onSubmit={handleSearchSubmit}>
         <input
           type="text"
@@ -48,7 +48,7 @@ const Search = () => {
 
       {console.log(options) }
 
-      {options.length > 0  && (
+      {/* {options.length > 0  && (
         <ul>
           {options.map((option, index) => (
             <li key={index}>
@@ -56,8 +56,8 @@ const Search = () => {
             </li>
           ))}
         </ul>
-      )}
-    </>
+      )} */}
+    </div>
   );
 };
 
